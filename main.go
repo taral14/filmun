@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/taral14/filmun/version"
+)
 
 func main() {
-	fmt.Println("init")
+	fmt.Println(version.Version)
 }
