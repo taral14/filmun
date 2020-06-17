@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+    golang:
+        build: .
+        volumes:
+            - ./:/app
+        ports:
+            - "8084:8084"
+        entrypoint: CompileDaemon --build="go build main.go" --command=./main

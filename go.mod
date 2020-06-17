@@ -2,4 +2,12 @@ module github.com/taral14/filmun
 
 go 1.14
 
-require go.uber.org/fx v1.12.0 // indirect
+require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gin-gonic/gin v1.6.3
+	github.com/go-sql-driver/mysql v1.5.0
+	github.com/jmoiron/sqlx v1.2.0
+	github.com/spf13/viper v1.7.0
+	go.uber.org/fx v1.12.0
+	golang.org/x/crypto v0.0.0-20200604202706-70a84ac30bf9
+)

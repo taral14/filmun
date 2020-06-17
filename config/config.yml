@@ -1,0 +1,7 @@
+port: 8084
+mysql.connection: "userfilms:4yw8gQJkOiMTMdvq@(46.101.139.104:3306)/films"
+
+auth:
+  hash_salt: "hash_salt"
+  signing_key: "signing_key"
+  token_ttl: 86400
