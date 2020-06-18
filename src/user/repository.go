@@ -26,6 +26,11 @@ func (r MysqlRepository) FindByUsername(username string) (*entity.User, error) {
 	return r.queryOne(sql, username)
 }
 
+func (r MysqlRepository) FindById(id int) (*entity.User, error) {
+	sql := "SELECT t.* FROM tbl_user t WHERE t.id=?"
+	return r.queryOne(sql, id)
+}
+
 func (r MysqlRepository) queryOne(query string, params ...interface{}) (*entity.User, error) {
 	row := rowUser{}
 	err := r.db.Get(&row, query, params...)

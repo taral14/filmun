@@ -40,12 +40,17 @@ func NewMysqlRepository(db *sqlx.DB) *MysqlRepository {
 }
 
 func (r MysqlRepository) FindByActorId(actorId int, limit, offset int) ([]entity.Film, error) {
-	sql := "SELECT t.* FROM tbl_film t JOIN tbl_film_actor a ON a.film_id=t.id WHERE a.person_id=? LIMIT ? OFFSET ?"
+	sql := "SELECT t.* FROM tbl_film t JOIN tbl_film_actor a ON a.film_id=t.id WHERE a.person_id=? ORDER BY t.premiere_at DESC LIMIT ? OFFSET ?"
 	return r.queryAll(sql, actorId, limit, offset)
 }
 
+func (r MysqlRepository) FindAll(limit, offset int) ([]entity.Film, error) {
+	sql := "SELECT t.* FROM tbl_film t WHERE t.is_series=0 ORDER BY t.premiere_at DESC LIMIT ? OFFSET ?"
+	return r.queryAll(sql, limit, offset)
+}
+
 func (r MysqlRepository) FindByDirectorId(directorId int, limit, offset int) ([]entity.Film, error) {
-	sql := "SELECT t.* FROM tbl_film t JOIN tbl_film_director d ON d.film_id=t.id WHERE d.person_id=? LIMIT ? OFFSET ?"
+	sql := "SELECT t.* FROM tbl_film t JOIN tbl_film_director d ON d.film_id=t.id WHERE d.person_id=? ORDER BY t.premiere_at DESC LIMIT ? OFFSET ?"
 	return r.queryAll(sql, directorId, limit, offset)
 }
 

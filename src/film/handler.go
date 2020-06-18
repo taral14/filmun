@@ -16,8 +16,19 @@ func NewHandler(service *Service) *Handler {
 }
 
 func (h *Handler) RegisterHTTPEndpoints(r *gin.Engine) {
+	r.GET("/films", h.ListFilms)
 	r.GET("/actors/:id/films", h.ActorFilms)
 	r.GET("/directors/:id/films", h.DirectorFilms)
+}
+
+func (h *Handler) ListFilms(c *gin.Context) {
+	films, err := h.service.ListFilms()
+	if err != nil {
+		log.Fatal(err)
+		c.AbortWithStatus(404)
+		return
+	}
+	c.JSON(200, films)
 }
 
 func (h *Handler) DirectorFilms(c *gin.Context) {

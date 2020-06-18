@@ -11,7 +11,12 @@ func init() {
 	Module = fx.Options(
 		fx.Provide(initUserService),
 		fx.Provide(initUserRepository),
+		fx.Provide(initHandler),
 	)
+}
+
+func initHandler(s *Service) *Handler {
+	return NewHandler(s)
 }
 
 func initUserService(db *sqlx.DB) *Service {

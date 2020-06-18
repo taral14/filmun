@@ -21,7 +21,7 @@ func initAuthService(s *user.Service, gen *JwtTokenGenerator, enc *PasswordEncod
 }
 
 func initJwtTokenGenerator() *JwtTokenGenerator {
-	return NewJwtTokenGenerator([]byte("key"), 10)
+	return NewJwtTokenGenerator([]byte("key"), 3600)
 }
 
 func initAuthHandler(service *Service) *Handler {
